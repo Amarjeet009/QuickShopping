@@ -1,1 +1,3 @@
+com\amarj\quickshopping\controller\AdminController.class
 com\amarj\quickshopping\controller\HomeController.class
+com\amarj\quickshopping\controller\CategoryController.class

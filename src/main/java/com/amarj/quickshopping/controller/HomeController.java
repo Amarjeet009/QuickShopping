@@ -23,12 +23,13 @@ public class HomeController {
 	@Autowired
 	private HttpSession session;
 
+
 	//   http://localhost:8080/ShoppingCart/
 	@RequestMapping("/")
 	public ModelAndView showHomePage()
 	{
 		System.out.println("Starting the method showHomePage");
-		//Specifying which page you have navigation
+		//Specifying which page you have navigateion
 		ModelAndView mv = new ModelAndView("/Home");
 		
 		//Specify what data you have to carry to home page
@@ -59,27 +60,35 @@ public class HomeController {
 	
 	
 	@RequestMapping("/validate")
-	public ModelAndView validateCredentials(@RequestParam("userID") String id, @RequestParam("password") String pwd)
+	public ModelAndView validateCredentials(@RequestParam("userID") String id, 
+			@RequestParam("password") String pwd)
 	{
 		
-       ModelAndView mv = new ModelAndView("/Home");
 		
+		//Actually you have get the data from DB
+		//Temporarily  -user->niit password =niit@123
+		
+		ModelAndView mv = new ModelAndView("/Home");
+		mv.addObject("isUserLoggedIn", "false");
 		if( userDAO.validate(id, pwd)==true)
 		
 		{
+			//Credentials are correct
+			mv.addObject("isUserLoggedIn", "true");
+			
 			user = userDAO.getUser(id);
 			
 			if(user.getRole().equals("ROLE_ADMIN"))
 			{
-				mv.addObject("role", "Admin");
+				mv.addObject("isAdmin", "true");
 			}
 			else
 			{
-				mv.addObject("role", "Customer");
+				mv.addObject("isAdmin", "false");
 			}
 			
 			mv.addObject("successMessage", "Valid Credentials");
-			/*session.setAttribute("loginMessage", "Welcome :" +id);*/
+			session.setAttribute("loginMessage", "Welcome :" +id);
 		}
 		else
 		{
@@ -87,26 +96,21 @@ public class HomeController {
 		}
 		
 		return mv;
-	
 		
 	}
 	
 	
 	
 	
-	@RequestMapping("/Logout")
+	@RequestMapping("/logout")
 	public ModelAndView logout()
 	{
 		ModelAndView mv =new ModelAndView("/Home");
 		//session.invalidate();
 		session.removeAttribute("loginMessage");
 		return mv;
-		
+	
 	}
-	
-	
-	
-	
 	
 	
 	
