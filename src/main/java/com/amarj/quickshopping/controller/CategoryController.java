@@ -22,7 +22,7 @@ public class CategoryController {
 	
 	//Curd Operations 
 	
-	/*public ModelAndView getAllCategories()
+	public ModelAndView getAllCategories()
 	{
 		ModelAndView mv=new ModelAndView("/AdminHome");
 	 List<Category> categoryList=categoryDAO.list();
@@ -31,6 +31,6 @@ public class CategoryController {
 	 mv.addObject("isUserClickedCategory", true);
 	 
 	 return mv;
-	}*/
+	}
 	
 }

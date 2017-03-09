@@ -37,7 +37,7 @@
 	  <td> ${category.name }&nbsp; &nbsp;</td>
 	  <td>${cayegory.description}&nbsp; &nbsp;</td>
 	    
-	  <td>  <a href="/manage_category_edit">Edit</a>|<a href="manage_category_"></a></td>
+	  <td>  <a href="/manage_category_edit">Edit</a>|<a href="manage_category_delete">Delete</a></td>
 	      
 	</tr>
 	</c:forEach>
